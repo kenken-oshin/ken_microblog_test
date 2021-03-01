@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
 {% block body %}
+
+{% if user.is_authenticated %}
+<p><a href="{% url 'create' %}" class="btn btn-primary">new</a></p>
+{% endif %}
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        {% for blog in object_list %}
+        {% for blog in blogs %}
             <div class="post-preview">
-                <a href="#">
+                <a href="{% url "detail" blog.id %}">
                     <h2 class="post-title">
                         {{ blog.content }}
                     </h2>
@@ -16,4 +20,6 @@
         {% endfor %}
     </div>
 </div>
+
+
 {% endblock %}
